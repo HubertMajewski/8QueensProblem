@@ -12,8 +12,8 @@
 using namespace std;
 
 //Global vars
-static short size = 8;
-static int *board = NULL; // Collection of Column {y}  indexes of x.
+static short size = 8; //Size is dynamic for 2D array
+static int *board = NULL; // Collection of Column {y} indexes of x.
 static int numSolutions = 0;
 
 bool placeQueen(int);
@@ -22,18 +22,17 @@ bool checkPlacement(int);
 bool printData();
 
 int main(int argc, char *argv[]) {
-    cout << "Enter Positive Num: ";
-    cin >> size;
-    while (size < 0) {
+    cout << "Enter A Positive Number: ";
+    cin >> size; //size recieved from console
+    while (size <= 0) { //If it is negative or 0
 		cout << "Re-enter Positive Num: ";
 		cin >> size;
     }
     
-    int *temp = new int[size];
-    board = temp;
+    board = new int[size]; //create a dynamic pointer which contains the dynamic size of the queens placed.
     placeQueen(0);
     printData();
-    delete [] temp;
+    delete [] board;
 }
 
 bool placeQueen(int x) {
